@@ -1,0 +1,2 @@
+1. Implmented Differential Privacy with FedAvg and trained it on Tumor2 data
+2. Implemented dynamic input size.

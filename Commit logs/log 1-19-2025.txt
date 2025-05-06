@@ -1,0 +1,1 @@
+Mapped out the complete working structure of the FedAvg algorithm

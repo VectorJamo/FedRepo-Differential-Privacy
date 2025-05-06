@@ -1,0 +1,4 @@
+1. Fixed the problem that arises when we added the batchnorm1d() layer in our NN by dropping the last training batch that had only 1 training example. 
+2. Fixed the problem that arises when we set the total number of clients to a low value (because the total number of active clients is c_ratio*n_clients),
+if c_ratio is say 10% (0.1) and n_clients = 5, then, clients participating in 1 round will be 0.1*5 = 0.5 = 0. Hence, we specify c_ratio = 1 as the default
+value and later override it if we want.

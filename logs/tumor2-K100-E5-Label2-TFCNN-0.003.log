@@ -1,0 +1,6 @@
+Args(dataset='tumor2', split='label', dir_alpha=None, n_classes=2, n_clients=100, n_max_sam=None, c_ratio=0.1, net='TFCNN', max_round=20, test_round=10, local_epochs=5, local_steps=None, batch_size=64, optimizer='SGD', lr=0.003, momentum=0.9, weight_decay=1e-05, max_grad_norm=100.0, cuda=True, algo='fedavg', nc_per_client=2, none='none', fname='tumor2-K100-E5-Label2-TFCNN-0.003.log')
+[ROUNDS]: 10 20
+[LOSSES]: 0.63537 0.62784
+[GLO_TACCS]: 0.63533 0.64432
+[LOCAL_TACCS]: 0.00000 0.00000 0.00000 0.00000
+

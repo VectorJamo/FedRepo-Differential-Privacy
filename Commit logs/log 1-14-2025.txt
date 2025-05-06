@@ -1,0 +1,15 @@
+# Edits made to the FedRepo codebase
+
+1. The dataset(CIFAR100) was not provideded. So we downloaded the dataset from from the author's link and integrated it into the project.
+2. Needed to modify the 'path.py' file of the codebase to correctly be able to load the dataset.
+3. Disabled cuda by default (As of 1/14/2025, I am using a system with no GPU). It was disabled by modifying the file config.py which contains the default parameter dictonary. Also, 
+some functions take in arguments to use cuda or not, two of those were set to False. // self.set_control_cuda(self.client_controls[client], False)
+4. The code was using data_iter.next() in scaffoldrs.py method on the DataLoader instance which is wrong. So it was replaced with next(data_iter).
+
+With the above four modifications, the program successfully ran and we were able to run the code.
+The entry point of the application is train_lab.py
+
+To run, use the command:
+python train_lab.py
+
+It uses the CIFAR100 dataset(a dataset with 60000 images and their appropriate labels) to train the different Federated Machine Learning models.

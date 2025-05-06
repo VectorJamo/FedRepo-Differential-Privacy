@@ -1,0 +1,2 @@
+1. The process of creating the dictonary containing the meta-information containing all the information about the model and the data was mapped out
+2. All the explanation has been written in the form of comments in the original codebase.

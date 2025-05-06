@@ -1,0 +1,2 @@
+1. Created the test_loaded_model.py class
+Now, we can save and load the saved model as well as load the dataset independently of the federated learning architecture to test the model.

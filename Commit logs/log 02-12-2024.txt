@@ -1,0 +1,1 @@
+1. Added new functionality such that it is possible to train the federated model by taking a subset of the dataset with only a specific number of unique classes.
