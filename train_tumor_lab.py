@@ -24,7 +24,10 @@ from algorithms.fednova import FedNova
 from algorithms.fedaws import FedAws
 from algorithms.fedawsDP import FedAwsDP
 from algorithms.moon import MOON
+from algorithms.moonDP import MOONDP
 from algorithms.feddyn import FedDyn
+from algorithms.feddynDP import FedDynDP
+
 
 from algorithms.pfedme import pFedMe
 from algorithms.perfedavg import PerFedAvg
@@ -97,8 +100,12 @@ def construct_algo(args):
         FedAlgo = FedAwsDP
     elif args.algo == "moon":
         FedAlgo = MOON
+    elif args.algo == "moonDP":
+        FedAlgo = MOONDP
     elif args.algo == "feddyn":
         FedAlgo = FedDyn
+    elif args.algo == "feddynDP":
+        FedAlgo = FedDynDP
     elif args.algo == "pfedme":
         FedAlgo = pFedMe
     elif args.algo == "perfedavg":
@@ -186,7 +193,17 @@ def get_hypers(algo):
             "cnt": 2,
             "reg_lamb": [1e-4, 1e-2]
         }
+    elif algo == "moonDP":
+        hypers = {
+            "cnt": 2,
+            "reg_lamb": [1e-4, 1e-2]
+        }
     elif algo == "feddyn":
+        hypers = {
+            "cnt": 2,
+            "reg_lamb": [1e-3, 1e-2]
+        }
+    elif algo == "feddynDP":
         hypers = {
             "cnt": 2,
             "reg_lamb": [1e-3, 1e-2]
@@ -377,4 +394,4 @@ if __name__ == "__main__":
     # set seed
     setup_seed(seed=10)
 
-    main_tumor_label("tumor4", "fedoptDP")
+    main_tumor_label("tumor4", "moonDP")
