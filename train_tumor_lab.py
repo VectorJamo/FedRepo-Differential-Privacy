@@ -394,4 +394,4 @@ if __name__ == "__main__":
     # set seed
     setup_seed(seed=10)
 
-    main_tumor_label("tumor4", "moonDP")
+    main_tumor_label("tumor4", "feddynDP")

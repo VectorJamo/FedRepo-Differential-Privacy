@@ -163,6 +163,17 @@ class FedDynDP():
             model, self.args.lr, self.args
         )
 
+        # Attach PrivacyEngine
+        privacy_engine = PrivacyEngine(secure_mode=False)
+        model.train()  # Ensure the model is in training mode
+        model, optimizer, train_loader = privacy_engine.make_private(
+            module=model,
+            optimizer=optimizer,
+            data_loader=train_loader,
+            noise_multiplier=1.0,  # Adjust as needed
+            max_grad_norm=1.0,     # Gradient clipping
+        )
+
         if self.args.local_steps is not None:
             n_total_bs = self.args.local_steps
         elif self.args.local_epochs is not None:
@@ -210,6 +221,7 @@ class FedDynDP():
             reg_loss = 0.0
             cnt = 0.0
             for name, param in model.named_parameters():
+                name = name.replace('_module.', '')
                 term1 = (param * (
                     local_grad[name] - glo_model.state_dict()[name]
                 )).sum()
@@ -233,8 +245,10 @@ class FedDynDP():
 
         # update local_grad
         for name, param in model.named_parameters():
+            dp_name = name
+            name = name.replace('_module.', '')
             local_grad[name] += (
-                model.state_dict()[name] - glo_model.state_dict()[name]
+                model.state_dict()[dp_name] - glo_model.state_dict()[name]
             )
         return model, local_grad, per_accs, loss
 
@@ -249,7 +263,7 @@ class FedDynDP():
                     print(f"Key '{name}' missing in client {client}. Skipping this parameter.")
                     continue
                 vs.append(local_models[client].state_dict()[n])
-                vs = torch.stack(vs, dim=0)
+            vs = torch.stack(vs, dim=0)
 
             try:
                 mean_value = vs.mean(dim=0)
